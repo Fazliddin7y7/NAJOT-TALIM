@@ -36,30 +36,35 @@ export default function WelcomePage() {
             </Link>
 
             {/* Features Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="text-left">
+            <div className="grid md:grid-cols-3 gap-6 mb-12 mt-12">
+              {/* Card 1 */}
+              <div className="text-left border border-primary/30 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <BookOpen className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="mb-2">Structured Learning</h3>
+                <h3 className="mb-2 font-semibold">Structured Learning</h3>
                 <p className="text-sm text-muted-foreground">
                   Follow a clear path designed by expert instructors
                 </p>
               </div>
-              <div className="text-left">
+
+              {/* Card 2 */}
+              <div className="text-left border border-primary/30 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <Target className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="mb-2">Track Progress</h3>
+                <h3 className="mb-2 font-semibold">Track Progress</h3>
                 <p className="text-sm text-muted-foreground">
                   Monitor your achievements and stay motivated
                 </p>
               </div>
-              <div className="text-left">
+
+              {/* Card 3 */}
+              <div className="text-left border border-primary/30 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="mb-2">Mentor Support</h3>
+                <h3 className="mb-2 font-semibold">Mentor Support</h3>
                 <p className="text-sm text-muted-foreground">
                   Get personalized feedback from your mentors
                 </p>

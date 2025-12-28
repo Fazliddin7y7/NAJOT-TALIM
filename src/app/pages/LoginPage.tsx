@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
@@ -7,6 +8,10 @@ import { GraduationCap } from 'lucide-react';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+
+  // State for input values
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +43,9 @@ export default function LoginPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="fazliddin@najottalim.uz"
-                  defaultValue="fazliddin@najottalim.uz"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -49,13 +55,19 @@ export default function LoginPage() {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
-                  defaultValue="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              {/* Green button */}
+              <Button
+                type="submit"
+                className="w-full bg-green-500 hover:bg-green-600 text-white"
+                size="lg"
+              >
                 Log in to Najot LMS
               </Button>
 
