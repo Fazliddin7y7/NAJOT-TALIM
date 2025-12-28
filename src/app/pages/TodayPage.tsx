@@ -4,14 +4,19 @@ import { Card, CardContent } from '../components/ui/card';
 import { Checkbox } from '../components/ui/checkbox';
 import { Badge } from '../components/ui/badge';
 import { Clock, CheckCircle2, Video } from 'lucide-react';
+import ProgressWithBubble from '../pages/ProgressWithBubble';
 
 export default function TodayPage() {
   const [tasks, setTasks] = useState(todayTasks);
 
   const toggleTask = (id: string) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ));
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    );
   };
 
   const getIcon = (type: string) => {
@@ -28,51 +33,44 @@ export default function TodayPage() {
   };
 
   const completedCount = tasks.filter(t => t.completed).length;
+  const progressValue = Math.round(
+    (completedCount / tasks.length) * 100
+  );
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <div className="mb-8">
+      {/* Header */}
+      <div className="mb-6">
         <h1 className="text-4xl mb-2">Today</h1>
         <p className="text-muted-foreground">
           {completedCount} of {tasks.length} tasks completed
         </p>
       </div>
 
-      <Card className="mb-6">
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
-            <div className="flex-1">
-              <div className="h-3 bg-secondary rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary transition-all"
-                  style={{ width: `${(completedCount / tasks.length) * 100}%` }}
-                />
-              </div>
-            </div>
-            <span className="text-sm text-muted-foreground">
-              {Math.round((completedCount / tasks.length) * 100)}%
-            </span>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Custom Progress */}
+      <ProgressWithBubble value={progressValue} />
 
-      <div className="space-y-3">
-        {tasks.map((task) => {
+      {/* Tasks */}
+      <div className="space-y-3 mt-8">
+        {tasks.map(task => {
           const Icon = getIcon(task.type);
+
           return (
             <Card
               key={task.id}
-              className={`transition-all ${task.completed ? 'opacity-60' : 'hover:shadow-md'
-                }`}
+              className={`transition-all ${
+                task.completed
+                  ? 'opacity-60'
+                  : 'hover:shadow-md'
+              }`}
             >
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="mt-1">
-                    <Checkbox
-                      checked={task.completed}
-                      onCheckedChange={() => toggleTask(task.id)}
-                    />
-                  </div>
+                  <Checkbox
+                    checked={task.completed}
+                    onCheckedChange={() => toggleTask(task.id)}
+                    className="mt-1"
+                  />
 
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
@@ -85,11 +83,15 @@ export default function TodayPage() {
                     </div>
 
                     <h3
-                      className={`mb-1 ${task.completed ? 'line-through text-muted-foreground' : ''
-                        }`}
+                      className={`mb-1 ${
+                        task.completed
+                          ? 'line-through text-muted-foreground'
+                          : ''
+                      }`}
                     >
                       {task.title}
                     </h3>
+
                     <p className="text-sm text-muted-foreground">
                       {task.time} • {task.duration}
                     </p>
@@ -101,12 +103,13 @@ export default function TodayPage() {
         })}
       </div>
 
+      {/* All done */}
       {completedCount === tasks.length && (
         <Card className="mt-6 bg-primary/5 border-primary/20">
           <CardContent className="pt-6 text-center">
-            <p className="text-2xl mb-2">🎉 All done for today!</p>
+            <p className="text-2xl mb-2">🎉 All done!</p>
             <p className="text-muted-foreground">
-              You've completed all your tasks. Great work on staying consistent!
+              You’ve completed all tasks for today.
             </p>
           </CardContent>
         </Card>
