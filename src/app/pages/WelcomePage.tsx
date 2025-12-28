@@ -73,7 +73,7 @@ export default function WelcomePage() {
       <footer className="border-t border-border py-8">
         <div className="container mx-auto px-6">
           <p className="text-center text-sm text-muted-foreground">
-            © 2024 Najot Ta'lim. Empowering the next generation of tech professionals.
+            © 2025 Najot Ta'lim. Empowering the next generation of tech professionals.
           </p>
         </div>
       </footer>
