@@ -37,7 +37,7 @@ export default function AssignmentsPage() {
 
       <Tabs value={filter} onValueChange={setFilter} className="mb-6">
         <TabsList>
-          <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="all">All </TabsTrigger>
           <TabsTrigger value="pending">Pending</TabsTrigger>
           <TabsTrigger value="reviewed">Reviewed</TabsTrigger>
           <TabsTrigger value="approved">Approved</TabsTrigger>
@@ -71,9 +71,11 @@ export default function AssignmentsPage() {
                 </div>
               </CardContent>
             </Card>
+            <br />
           </Link>
         ))}
       </div>
+      
     </div>
   );
 }
